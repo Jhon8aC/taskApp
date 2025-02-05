@@ -1,0 +1,22 @@
+# Node modules
+/node_modules
+
+# Build output
+/dist
+/out-tsc
+
+# IDE config files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+
+# Log files
+*.log
