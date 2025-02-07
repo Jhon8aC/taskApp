@@ -20,3 +20,6 @@ Thumbs.db
 
 # Log files
 *.log
+
+# Ignore angular cache
+.angular/cache/
