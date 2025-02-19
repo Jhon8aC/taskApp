@@ -1,0 +1,74 @@
+<!-- If paramsId exists, verify if exists the task by id to allow and display the form >
+default = false  -->
+@if (!notFound()) {
+    @if(paramsId){
+        <h1 class="text-center mt-5">You are editing your task ✏️</h1>
+    }
+    @if (!paramsId) {
+        <h1 class="text-center mt-5">Add your new task here ✏️</h1>
+    }
+<div class="container d-flex justify-content-center mt-4 vh-100">
+  <div class="row justify-content-center w-100">
+    <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+      <form 
+      [formGroup]="taskForm" 
+      (ngSubmit)="onSubmit(taskForm.value)" 
+      class="p-4 shadow rounded form-container rounded-4">
+        <!-- Switch center -->
+        <div class="mb-3">
+          <label for="completed" class="form-label d-flex justify-content-center">Completed</label>
+          <div class="form-check d-flex form-switch justify-content-center mb-3">
+            <input class="form-check-input" type="checkbox" id="completed" formControlName="completed">
+          </div>
+        </div>
+        <!-- Title input -->
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title" formControlName="title">
+          <!-- Show errors -->
+          @if(taskForm.controls['title'].touched){
+            <div class="text-danger">
+                @if(taskForm.controls['title'].errors?.['required']){
+                    <span>You must have a title.</span>
+                }
+                @if(taskForm.controls['title'].errors?.['maxlength']){
+                    <span>Title cannot be longer than 50 characters.</span>
+                }
+                @if(taskForm.controls['title'].errors?.['minlength']){
+                    <span>Title cannot be least than 4 characters.</span>
+                }
+            </div>
+          }
+
+        </div>
+        <!-- Description input -->
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <input type="text" class="form-control" id="description" formControlName="description">
+          <!-- Show errors -->
+          @if(taskForm.controls['description'].touched){
+            <div class="text-danger">
+                @if(taskForm.controls['description'].errors?.['required']){
+                    <span>You must have a description.</span>
+                }
+                @if(taskForm.controls['description'].errors?.['maxlength']){
+                    <span>Description cannot be longer than 200 characters.</span>
+                }
+                @if(taskForm.controls['description'].errors?.['minlength']){
+                    <span>Description cannot be least than 4 characters.</span>
+                }
+            </div>
+          }
+        </div>
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary w-100" [disabled]="taskForm.invalid">Add task</button>
+    </form>
+    </div>
+  </div>
+</div>
+}
+
+<!-- If paramsId exists and it's not found, display the not found page -->
+@if(notFound()){
+    <app-page-not-found/>
+}

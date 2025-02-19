@@ -1,8 +1,7 @@
-export interface ApiResponse<T> {
-    taskId?: string;
-    Succeeded?: boolean;
-    Message?: string;
-    Errors?: string[];  
-    Data?: T | null;
-  }
-  
+export interface ApiResponse {
+  taskId?: string;
+  Succeeded?: boolean;
+  Message?: string;
+  Errors?: string[];
+  Data?: any[]; 
+}
